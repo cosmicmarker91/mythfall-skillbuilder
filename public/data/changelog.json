@@ -3,7 +3,7 @@
     "You can now only pick one starting node. Once you buy one, the other six grey out.",
     "Maximum of 28 skillpoints. If you try to buy past it, you get a message saying the maximum is 28, and links or builds that go over are cut down to fit.",
     "Added this changelog.",
-    "New \"Clear All Equipment\" button on the Character screen.",
+    "New \"Clear All Equipment\" and \"Reset Stat Points\" buttons on the Character screen.",
     "Publishing to the community now also saves your base stats and equipment, and loading a community build restores them."
   ] },
   { "date": "2026-11-08", "title": "Character, equipment and sharing", "items": [
