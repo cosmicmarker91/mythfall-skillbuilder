@@ -60,12 +60,23 @@
   <div id="itemTip" class="itemtip" hidden></div>
 
   <div id="buildbar">
-    <input id="buildName" maxlength="40" placeholder="Name your build" aria-label="Build name">
-    <button id="share" class="mf-btn sm">Copy Link</button>
-    <button id="publish" class="mf-btn sm">Publish</button>
-    <button id="communityBtn" class="mf-btn sm">Community</button>
-    <button id="changelogBtn" class="mf-btn sm dim">Changelog<i id="clDot" hidden></i></button>
-    <button id="fit" class="mf-btn sm dim" title="Re-center the view">Fit</button>
+    <div id="barBody">
+      <button id="share" class="mf-btn sm">Copy Link</button>
+      <span class="pubwrap">
+        <button id="publish" class="mf-btn sm">Publish</button>
+        <form id="pubPop" hidden autocomplete="off">
+          <input id="buildName" maxlength="40" placeholder="Build name" aria-label="Build name" required>
+          <input id="buildAuthor" maxlength="30" placeholder="Author name" aria-label="Author name">
+          <div class="pub-btns"><button type="button" id="pubCancel" class="mf-btn sm dim">Cancel</button><button type="submit" class="mf-btn sm">Publish</button></div>
+        </form>
+      </span>
+      <button id="communityBtn" class="mf-btn sm">Community</button>
+      <button id="changelogBtn" class="mf-btn sm dim">Changelog<i id="clDot" hidden></i></button>
+      <button id="fit" class="mf-btn sm dim" title="Re-center the view">Fit</button>
+    </div>
+    <button id="barToggle" class="bar-toggle" title="Hide / show this bar" aria-label="Hide or show the toolbar" aria-expanded="true">
+      <svg viewBox="0 0 6 10" width="9" height="15" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="#fff" stroke-width="2"/></svg>
+    </button>
   </div>
 
   <div id="points" title="Skillpoints spent"><img src="assets/skill-point.png" alt=""><span id="count">0</span></div>
@@ -93,7 +104,7 @@
     <div class="dlg-head"><h2>Changelog</h2><button id="closeChangelog" class="mf-btn sm dim">Close</button></div>
     <div id="changelogList"></div>
   </dialog>
-  <div id="egg" hidden><video id="eggVideo" src="assets/dodge.mp4" preload="none" playsinline></video></div>
+  <div id="egg" hidden><figure id="eggBox"><video id="eggVideo" src="assets/dodge.mp4" preload="none" playsinline></video><figcaption>Credit: MadDementor</figcaption></figure></div>
   <div id="toast"></div>
 </div>
 <script type="module" src="js/main.js"></script>

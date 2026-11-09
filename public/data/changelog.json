@@ -1,4 +1,9 @@
 [
+  { "date": "2026-11-09", "title": "Moved to Cloudflare Pages", "items": [
+    "The site moved from Cloudflare Workers to Cloudflare Pages, so it now lives at a new address (mythfall-skillbuilder.pages.dev). Share links still work, just on the new address.",
+    "The top-right bar can now be collapsed and opened again with the arrow button. It remembers your choice.",
+    "Publish now asks for the build name and an optional Author in a small popup under the Publish button, so the top-right bar is shorter. The author is saved in share links and shown in the Community list."
+  ] },
   { "date": "2026-11-09", "title": "Rules and changelog", "items": [
     "You can now only pick one starting node. Once you buy one, the other six grey out.",
     "Maximum of 28 skillpoints. If you try to buy past it, you get a message saying the maximum is 28, and links or builds that go over are cut down to fit.",

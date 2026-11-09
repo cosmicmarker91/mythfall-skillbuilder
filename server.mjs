@@ -34,7 +34,8 @@ http.createServer(async (req, res) => {
         if (!name || !skills || !skills.length) return send(res, 400, { error: "name and skills required" });
         const base = Array.isArray(b.base) && b.base.length === 6 ? b.base.map((x) => Math.max(0, Math.min(20, Math.trunc(+x) || 0))) : null;
         const equip = Array.isArray(b.equip) ? b.equip.map(Number).filter(Number.isInteger).slice(0, 12) : null;
-        const build = { id: crypto.randomBytes(5).toString("hex"), name, skills, base, equip, createdAt: new Date().toISOString() };
+        const author = String(b.author || "").trim().slice(0, 30);
+        const build = { id: crypto.randomBytes(5).toString("hex"), name, skills, base, equip, author, createdAt: new Date().toISOString() };
         const all = await readBuilds(); all.push(build);
         await fs.mkdir(path.dirname(store), { recursive: true });
         await fs.writeFile(store, JSON.stringify(all.slice(-1000), null, 1));
@@ -43,6 +44,14 @@ http.createServer(async (req, res) => {
       return send(res, 405, { error: "method not allowed" });
     }
     const del = url.pathname.match(/^\/api\/builds\/([\w-]+)$/);
+    if (del && req.method === "PATCH") {
+      const b = await readBody(req);
+      const name = String(b.name || "").trim().slice(0, 40), author = String(b.author || "").trim().slice(0, 30);
+      if (!name) return send(res, 400, { error: "name required" });
+      const all = (await readBuilds()).map((x) => (x.id === del[1] ? { ...x, name, author } : x));
+      await fs.writeFile(store, JSON.stringify(all, null, 1));
+      return send(res, 200, { ok: true });
+    }
     if (del && req.method === "DELETE") {
       const all = (await readBuilds()).filter((b) => b.id !== del[1]);
       await fs.writeFile(store, JSON.stringify(all, null, 1));

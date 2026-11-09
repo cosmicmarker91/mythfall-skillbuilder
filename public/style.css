@@ -79,9 +79,15 @@ button, input, .skill { cursor: var(--cursor); font-family: inherit; }
 #points { position: absolute; left: clamp(16px, 1.4vw, 30px); bottom: clamp(10px, 1.2vw, 24px); display: flex; align-items: center; gap: clamp(14px, 1.7vw, 34px); font-weight: 900; font-size: clamp(22px, 1.65vw, 34px); pointer-events: none; }
 #points img { width: clamp(22px, 1.5vw, 30px); image-rendering: pixelated; }
 
-#buildbar { position: absolute; right: 12px; top: 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; max-width: 42vw; padding: 8px; background: rgba(9,10,19,.8); border: 1px solid #262a3c; }
-#buildbar input { height: 30px; width: 170px; background: #05060c; border: 1px solid #3a3f58; color: #fff; padding: 0 10px; font-weight: 700; font-size: 14px; outline: none; }
-#buildbar input:focus { border-color: var(--btn); }
+#buildbar { position: absolute; right: 12px; top: 10px; display: flex; gap: 8px; align-items: flex-start; justify-content: flex-end; max-width: 40vw; padding: 8px; background: rgba(9,10,19,.8); border: 1px solid #262a3c; }
+#barBody { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+#buildbar input, #pubPop input { height: 30px; width: 170px; background: #05060c; border: 1px solid #3a3f58; color: #fff; padding: 0 10px; font-weight: 700; font-size: 14px; outline: none; }
+#buildbar input:focus, #pubPop input:focus { border-color: var(--btn); }
+.pubwrap { position: relative; display: inline-block; }
+#pubPop { position: absolute; top: calc(100% + 10px); left: 0; z-index: 6; width: 220px; display: flex; flex-direction: column; gap: 8px; padding: 10px; background: rgba(9,10,19,.97); border: 1px solid var(--btn); box-shadow: 0 6px 24px rgba(0,0,0,.6); }
+#pubPop input { width: 100%; box-sizing: border-box; }
+.pub-btns { display: flex; gap: 8px; justify-content: flex-start; }
+#pubPop[hidden] { display: none; }
 .mf-btn.sm { font-size: 14px; height: 30px; padding: 0 14px; border-bottom-width: 4px; -webkit-text-stroke: 2.5px #000; }
 .mf-btn.dim { background: #3b3f52; border-bottom-color: #23263a; }
 #hint { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); font-size: 12px; font-weight: 700; color: #5d6485; letter-spacing: .05em; pointer-events: none; white-space: nowrap; }
@@ -229,8 +235,19 @@ dialog#changelog { width: min(620px, 92vw); max-height: 82vh; background: #10122
 /* secret video */
 #egg { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; background: rgba(0,0,0,.35); -webkit-backdrop-filter: grayscale(1) brightness(.45); backdrop-filter: grayscale(1) brightness(.45); }
 #egg[hidden] { display: none; }
+#eggBox { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+#eggBox figcaption { font-size: 12px; font-weight: 700; letter-spacing: .05em; color: #b9bfd6; text-shadow: 0 1px 0 #000; }
 #egg video { width: min(380px, 70vw); max-height: 60vh; background: #000; border: 3px solid #14151f; }
 
 .c-clearrow { display: flex; justify-content: center; margin: 10px 0 4px; }
 .c-clearrow .c-btn.wide { height: 32px; font-size: 14px; -webkit-text-stroke: 0; }
 .c-btn.wide:disabled { background: #7d8a73; border-bottom-color: #55604d; color: #c7ccc2; }
+
+/* top-right bar is a drawer: it slides off the right edge and a tab stays behind to pull it back out */
+#buildbar { right: 0; transition: transform .22s ease; border-right: 0; }
+#buildbar.collapsed { transform: translateX(100%); }
+.bar-toggle { position: absolute; left: -27px; top: -1px; width: 27px; height: 46px; padding: 0; display: grid; place-items: center; background: #3b3f52; border: 1px solid #262a3c; border-right: 0; border-bottom: 4px solid #23263a; cursor: pointer; }
+.bar-toggle:hover { filter: brightness(1.2); }
+.bar-toggle svg { transition: transform .22s; }
+#buildbar.collapsed .bar-toggle svg { transform: rotate(180deg); }
+.c-meta, .sub .by { color: #9aa3c7; }

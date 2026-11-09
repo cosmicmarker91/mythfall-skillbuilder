@@ -51,6 +51,7 @@ function render() {
   renderPanel(id, plan);
   $("count").textContent = sel.set.size;
   const nameEl = $("buildName"); if (document.activeElement !== nameEl) nameEl.value = sel.name;
+  const authEl = $("buildAuthor"); if (document.activeElement !== authEl) authEl.value = sel.author;
 }
 let picker;
 const character = initCharacter(sel, { $, graph, data, openPicker: (t) => picker.open(t) });
@@ -88,9 +89,10 @@ $("viewport").addEventListener("dblclick", (e) => { const g = e.target.closest &
 
 // restore shared build from the URL
 const loadFromUrl = () => {
-  const { ids, name, base, equip, stale } = readUrl();
+  const { ids, name, author, base, equip, stale } = readUrl();
   if (stale) toast("This link was made for an older version of the tree, so its skills could not be loaded");
   sel.base = base; sel.equip = {}; for (const id of equip) { const it = data.byId.get(id); if (it) sel.equip[SLOT_KEYS[it.type]] = id; }
+  sel.author = author || "";
   sel.replace(ids, name);
   const bad = ids.filter((i) => !sel.valid.has(i)).length;
   if (bad) toast(`${bad} skill${bad > 1 ? "s" : ""} in this link no longer exist`);
@@ -106,18 +108,35 @@ $("reset").onclick = () => {
 };
 $("fit").onclick = () => view.fit(true);
 $("buildName").addEventListener("input", (e) => { sel.name = e.target.value.trim(); writeUrl(sel); });
+$("buildAuthor").addEventListener("input", (e) => { sel.author = e.target.value.trim().slice(0, 30); writeUrl(sel); });
+
+// collapsible top-right bar (remembers its state)
+const bar = $("buildbar"), BAR = "mythfall.barCollapsed";
+const setBar = (c) => { bar.classList.toggle("collapsed", c); $("barToggle").setAttribute("aria-expanded", String(!c)); try { localStorage.setItem(BAR, c ? "1" : ""); } catch {} };
+try { if (localStorage.getItem(BAR)) setBar(true); } catch {}
+$("barToggle").onclick = () => setBar(!bar.classList.contains("collapsed"));
 
 $("share").onclick = async () => {
   const url = shareUrl(sel);
   try { await navigator.clipboard.writeText(url); toast("Link copied"); }
   catch { prompt("Copy this link:", url); }
 };
-$("publish").onclick = async () => {
+// Publish asks for the build name + author in a small popup at the bottom
+const pop = $("pubPop"), closePop = () => { pop.hidden = true; };
+$("publish").onclick = () => {
   if (!sel.set.size) return toast("Purchase some skills first");
-  if (!sel.name) { $("buildName").focus(); return toast("Give your build a name first"); }
-  const { local } = await community.publish(sel.name, sel.ids(), { base: sel.base, equip: Object.values(sel.equip).filter(Boolean) });
-  toast(local ? "Saved locally (server not running)" : "Published to community");
+  if (!pop.hidden) return closePop();
+  pop.hidden = false; $("buildName").focus();
 };
+$("pubCancel").onclick = closePop;
+pop.addEventListener("keydown", (e) => { if (e.key === "Escape") closePop(); });
+pop.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!sel.name) { $("buildName").focus(); return toast("Give your build a name first"); }
+  const { local } = await community.publish(sel.name, sel.ids(), { base: sel.base, equip: Object.values(sel.equip).filter(Boolean), author: sel.author });
+  closePop();
+  toast(local ? "Saved locally (server not running)" : "Published to community");
+});
 
 const dlg = $("community");
 const openCommunity = async () => {
@@ -129,12 +148,13 @@ const openCommunity = async () => {
     const li = document.createElement("li");
     const meta = document.createElement("div"); meta.className = "meta";
     const nm = document.createElement("div"); nm.className = "nm"; nm.textContent = b.name;
-    const sub = document.createElement("div"); sub.className = "sub"; sub.textContent = `${b.skills.length} skills${b.equip && b.equip.length ? " · gear" : ""} · ${new Date(b.createdAt).toLocaleDateString()}`;
+    const sub = document.createElement("div"); sub.className = "sub"; sub.textContent = `${b.author ? "by " + b.author + " · " : ""}${b.skills.length} skills${b.equip && b.equip.length ? " · gear" : ""} · ${new Date(b.createdAt).toLocaleDateString()}`;
     meta.append(nm, sub);
     const load = document.createElement("button"); load.className = "mf-btn sm"; load.textContent = "Load";
     load.onclick = () => {
       sel.base = (b.base && b.base.length === 6 ? b.base : [0, 0, 0, 0, 0, 0]).map((x) => Math.max(0, Math.min(20, x | 0)));
       sel.equip = {}; for (const id of b.equip || []) { const it = data.byId.get(id); if (it) sel.equip[SLOT_KEYS[it.type]] = id; }
+      sel.author = b.author || "";
       sel.replace(b.skills, b.name); dlg.close();
     };
     li.append(meta, load);
@@ -144,7 +164,13 @@ const openCommunity = async () => {
         if (!confirm(`Delete "${b.name}" from the community?`)) return;
         try { await community.remove(b.id); toast("Deleted"); openCommunity(); } catch { toast("Delete refused: check the Firebase rules / admin user"); }
       };
-      li.append(del);
+      const ren = document.createElement("button"); ren.className = "mf-btn sm dim"; ren.textContent = "Rename";
+      ren.onclick = async () => {
+        const name = prompt("Build name:", b.name); if (name === null || !name.trim()) return;
+        const author = prompt("Author (leave empty for none):", b.author || ""); if (author === null) return;
+        try { await community.rename(b.id, { name: name.trim().slice(0, 40), author: author.trim().slice(0, 30) }); toast("Renamed"); openCommunity(); } catch { toast("Rename refused: update the Firebase rules (see README)"); }
+      };
+      li.append(ren, del);
     }
     ul.append(li);
   }
@@ -155,7 +181,9 @@ $("closeCommunity").onclick = () => dlg.close();
 dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
 
 // ---- typed codes (anywhere except inside a text box): admin mode, and a secret ----
-const ADMIN_CODE = "cosm1c", SECRET = "dodge"; let typed = "";
+// The admin code is not kept in this file, only its SHA-256 and length. What you type is also the real Firebase password, so Firebase enforces who may delete/rename.
+const ADMIN_LEN = 8, ADMIN_HASH = "69e3370055c23caa4ef9aba6bc1ceb971345fb45dc77bbfb2ef16d8c7c699823", SECRET = "dodge"; let typed = "";
+const sha256 = async (t) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)))].map((x) => x.toString(16).padStart(2, "0")).join("");
 const egg = $("egg"), eggVideo = $("eggVideo");
 const endEgg = () => { eggVideo.pause(); egg.hidden = true; };
 eggVideo.addEventListener("ended", endEgg);
@@ -165,10 +193,12 @@ addEventListener("keydown", async (e) => {
   if (e.target.closest && e.target.closest("input, textarea") || e.key.length !== 1) return;
   typed = (typed + e.key.toLowerCase()).slice(-12);
   if (typed.endsWith(SECRET)) { typed = ""; egg.hidden = false; eggVideo.currentTime = 0; eggVideo.play().catch(endEgg); return; }
-  if (!typed.endsWith(ADMIN_CODE)) return;
+  if (typed.length < ADMIN_LEN) return;
+  const code = typed.slice(-ADMIN_LEN);
+  if (!crypto.subtle || await sha256(code) !== ADMIN_HASH) return;
   typed = "";
   if (community.isAdmin()) { community.adminOff(); document.body.classList.remove("admin"); toast("Admin mode off"); return; }
-  if (await community.adminLogin(ADMIN_CODE)) { document.body.classList.add("admin"); toast("Admin mode on: open Community to delete builds"); }
+  if (await community.adminLogin(code)) { document.body.classList.add("admin"); toast("Admin mode on: open Community to rename or delete builds"); }
   else toast("Admin sign-in failed (admin user not set up in Firebase yet)");
 });
 
@@ -177,7 +207,8 @@ const clDlg = $("changelog"), SEEN = "mythfall.changelogSeen";
 let changelog = [];
 try { changelog = await (await fetch("data/changelog.json", { cache: "no-store" })).json(); } catch {}
 const seen = () => { try { return localStorage.getItem(SEEN) || ""; } catch { return ""; } };
-$("clDot").hidden = !changelog.length || changelog[0].date <= seen();
+const stamp = (e) => e.date + "|" + e.title;
+$("clDot").hidden = !changelog.length || stamp(changelog[0]) === seen();
 $("changelogBtn").onclick = () => {
   const box = $("changelogList"); box.replaceChildren();
   for (const e of changelog) {
@@ -187,7 +218,7 @@ $("changelogBtn").onclick = () => {
     sec.append(h, ul); box.append(sec);
   }
   if (!changelog.length) box.textContent = "No updates yet.";
-  try { if (changelog[0]) localStorage.setItem(SEEN, changelog[0].date); } catch {}
+  try { if (changelog[0]) localStorage.setItem(SEEN, stamp(changelog[0])); } catch {}
   $("clDot").hidden = true; clDlg.showModal();
 };
 $("closeChangelog").onclick = () => clDlg.close();
