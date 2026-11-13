@@ -69,9 +69,31 @@ const LS = "mythfall.community.v1";
 const lsRead = () => { try { return JSON.parse(localStorage.getItem(LS) || "[]"); } catch { return []; } };
 const fs = () => FIREBASE.projectId && FIREBASE.apiKey;
 const FS = () => `https://firestore.googleapis.com/v1/projects/${FIREBASE.projectId}/databases/(default)/documents`;
-const fromDoc = (d) => ({ id: d.name.split("/").pop(), name: d.fields.name.stringValue, skills: (d.fields.skills.arrayValue.values || []).map((v) => v.stringValue), createdAt: d.fields.createdAt.timestampValue, author: d.fields.author ? d.fields.author.stringValue : "",
+const fromDoc = (d) => ({ id: d.name.split("/").pop(), name: d.fields.name.stringValue, skills: (d.fields.skills.arrayValue.values || []).map((v) => v.stringValue), createdAt: d.fields.createdAt.timestampValue, author: d.fields.author ? d.fields.author.stringValue : "", owner: d.fields.owner ? d.fields.owner.stringValue : "",
   base: d.fields.base ? d.fields.base.stringValue.split(",").map(Number) : null, equip: d.fields.equip ? (d.fields.equip.arrayValue.values || []).map((v) => +v.integerValue) : null });
 let adminToken = null, adminPass = null, adminExp = 0;   // memory only, never stored
+
+// Anonymous identity (no login screen): Firebase hands this browser a random id the first time it publishes. Builds are stamped with it,
+// and the rules let only that id (or the admin) delete them. The refresh token is kept in localStorage so the id survives reloads.
+const AK = "mythfall.anon.v1";
+let anon = null;
+const readAnon = () => { try { return JSON.parse(localStorage.getItem(AK) || "null"); } catch { return null; } };
+const saveAnon = () => { try { localStorage.setItem(AK, JSON.stringify(anon)); } catch {} };
+async function ownerAuth() {
+  if (!fs()) return null;
+  anon = anon || readAnon();
+  if (anon && Date.now() < anon.exp) return anon;
+  try {
+    if (anon && anon.refresh) {
+      const r = await fetch(`https://securetoken.googleapis.com/v1/token?key=${FIREBASE.apiKey}`, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `grant_type=refresh_token&refresh_token=${encodeURIComponent(anon.refresh)}` });
+      if (r.ok) { const t = await r.json(); anon = { uid: t.user_id, token: t.id_token, refresh: t.refresh_token, exp: Date.now() + (+t.expires_in - 60) * 1000 }; saveAnon(); return anon; }
+    }
+    const r = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE.apiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ returnSecureToken: true }) });
+    if (!r.ok) return null;   // Anonymous sign-in not enabled in Firebase yet
+    const j = await r.json(); anon = { uid: j.localId, token: j.idToken, refresh: j.refreshToken, exp: Date.now() + (+j.expiresIn - 60) * 1000 }; saveAnon(); return anon;
+  } catch { return null; }
+}
 export const community = {
   // Typed admin code = the real password of a Firebase user, so the code is not in the source and the database enforces it.
   async adminLogin(pass) {
@@ -84,15 +106,39 @@ export const community = {
   },
   adminOff() { adminToken = adminPass = null; },
   isAdmin: () => !!adminToken,
+  myId: () => (anon || readAnon() || {}).uid || "",
+  // the admin can delete anything; everyone else only the builds this browser published (local-only storage has nothing to protect)
+  // you can edit your own builds (the rules enforce it); local-only storage has nothing to protect
+  canEdit(b) { return !fs() || (!!b.owner && b.owner === this.myId()); },
+  canDelete(b) { return !!adminToken || !fs() || (!!b.owner && b.owner === this.myId()); },
   async remove(id) {
     if (adminToken && Date.now() > adminExp && adminPass) await this.adminLogin(adminPass);   // token lasts ~1h
     if (fs()) {
-      const r = await fetch(`${FS()}/builds/${encodeURIComponent(id)}?key=${FIREBASE.apiKey}`, { method: "DELETE", headers: { Authorization: `Bearer ${adminToken}` } });
+      const token = adminToken || ((await ownerAuth()) || {}).token;
+      if (!token) throw new Error("not signed in");
+      const r = await fetch(`${FS()}/builds/${encodeURIComponent(id)}?key=${FIREBASE.apiKey}`, { method: "DELETE", headers: { Authorization: `Bearer ${token}` } });
       if (!r.ok) throw new Error("delete refused");
       return;
     }
     try { const r = await fetch(`api/builds/${encodeURIComponent(id)}`, { method: "DELETE" }); if (r.ok) return; } catch {}
     try { localStorage.setItem(LS, JSON.stringify(lsRead().filter((b) => b.id !== id))); } catch {}
+  },
+  // owner: replace a build's contents (and name / author) in place
+  async update(id, { name, author, skills, base, equip }) {
+    if (fs()) {
+      const me = await ownerAuth(); if (!me) throw new Error("not signed in");
+      const fields = { name: { stringValue: name }, skills: { arrayValue: { values: skills.map((x) => ({ stringValue: x })) } } };
+      if (author) fields.author = { stringValue: author };
+      if (base && base.some(Boolean)) fields.base = { stringValue: base.join(",") };
+      if (equip && equip.length) fields.equip = { arrayValue: { values: equip.map((i) => ({ integerValue: String(i) })) } };
+      const mask = ["name", "author", "skills", "base", "equip"].map((k) => `updateMask.fieldPaths=${k}`).join("&");   // a field left out of `fields` is removed
+      const r = await fetch(`${FS()}/builds/${encodeURIComponent(id)}?key=${FIREBASE.apiKey}&${mask}`, { method: "PATCH", headers: { "Content-Type": "application/json", Authorization: `Bearer ${me.token}` }, body: JSON.stringify({ fields }) });
+      if (!r.ok) throw new Error("update refused");
+      return;
+    }
+    const patch = { name, author, skills, base, equip };
+    try { const r = await fetch(`api/builds/${encodeURIComponent(id)}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch) }); if (r.ok) return; } catch {}
+    try { localStorage.setItem(LS, JSON.stringify(lsRead().map((b) => (b.id === id ? { ...b, ...patch } : b)))); } catch {}
   },
   // admin: change a build's name / author
   async rename(id, { name, author }) {
@@ -129,8 +175,10 @@ export const community = {
         if (extra.author) full.author = { stringValue: extra.author };
         if (extra.base && extra.base.some(Boolean)) full.base = { stringValue: extra.base.join(",") };
         if (extra.equip && extra.equip.length) full.equip = { arrayValue: { values: extra.equip.map((i) => ({ integerValue: String(i) })) } };
-        const send = (f) => fetch(`${FS()}/builds?key=${FIREBASE.apiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fields: f }) });
-        let r = await send(full);
+        const me = await ownerAuth();
+        if (me) full.owner = { stringValue: me.uid };
+        const send = (f, tok) => fetch(`${FS()}/builds?key=${FIREBASE.apiKey}`, { method: "POST", headers: { "Content-Type": "application/json", ...(tok ? { Authorization: `Bearer ${tok}` } : {}) }, body: JSON.stringify({ fields: f }) });
+        let r = await send(full, me && me.token);
         if (!r.ok && Object.keys(full).length > 3) r = await send(fields);   // rules not updated yet: still publish the skills
         if (!r.ok) throw 0;
         return { build: fromDoc(await r.json()), local: false };

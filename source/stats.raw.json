@@ -1,0 +1,506 @@
+[
+	{
+		"ID": 0,
+		"Name": "Vitality",
+		"Description": "Increases health points",
+		"Icon": "item-consumable-vit-0.png"
+	},
+	{
+		"ID": 1,
+		"Name": "Strength",
+		"Description": "Increases damage for melee weapons",
+		"Icon": "item-consumable-str-0.png"
+	},
+	{
+		"ID": 2,
+		"Name": "Speed",
+		"Description": "Increases movement speed",
+		"Icon": "item-consumable-spd-0.png"
+	},
+	{
+		"ID": 3,
+		"Name": "Dexterity",
+		"Description": "Increases damage for ranged weapons",
+		"Icon": "item-consumable-dex-0.png"
+	},
+	{
+		"ID": 4,
+		"Name": "Defense",
+		"Description": "Decreases damage received",
+		"Icon": "item-consumable-def-0.png"
+	},
+	{
+		"ID": 5,
+		"Name": "Willpower",
+		"Description": "Increases damage for magic weapons",
+		"Icon": "item-consumable-wil-0.png"
+	},
+	{
+		"ID": 6,
+		"Name": "Damage Received",
+		"FullName": "Vulnerability",
+		"Description": "Increases damage recieved",
+		"LowerIsBetter": true
+	},
+	{
+		"ID": 7,
+		"Name": "Projectile Duration",
+		"Description": "Increases projectile duration"
+	},
+	{
+		"ID": 8,
+		"Name": "Projectile Bounce",
+		"Description": "Increases the number of times a projectile will bounce off walls"
+	},
+	{
+		"ID": 9,
+		"Name": "Pierce",
+		"Description": "Projectiles will now pierce through enemies"
+	},
+	{
+		"ID": 10,
+		"Name": "Dodge",
+		"FullName": "Dodge Chance",
+		"Description": "Increases chance to dodge incoming attacks"
+	},
+	{
+		"ID": 11,
+		"Name": "Dash CDR",
+		"Description": "Reduces dash cooldown time"
+	},
+	{
+		"ID": 12,
+		"Name": "Lifesteal Chance",
+		"Description": "Increases chance to lifesteal on hit"
+	},
+	{
+		"ID": 13,
+		"Name": "Critical Chance",
+		"Description": "Increases chance to deal a critical on hit"
+	},
+	{
+		"ID": 14,
+		"Name": "Projectiles",
+		"FullName": "Bonus Projectiles",
+		"Description": "Increases number of projectiles on your weapon"
+	},
+	{
+		"ID": 15,
+		"Name": "Damage",
+		"FullName": "Bonus Damage",
+		"Description": "Increases projectile damage"
+	},
+	{
+		"ID": 16,
+		"Name": "Dash Distance",
+		"Description": "Increases the dash distance"
+	},
+	{
+		"ID": 17,
+		"Name": "Manasteal Chance",
+		"Description": "Increases chance to manasteal on hit"
+	},
+	{
+		"ID": 18,
+		"Name": "Dashes",
+		"FullName": "Bonus Dashes",
+		"Description": "Increases the number of dash charges you can hold"
+	},
+	{
+		"ID": 19,
+		"Name": "Swim Speed",
+		"Description": "Increases movement speed while swimming"
+	},
+	{
+		"ID": 20,
+		"Name": "Health Regeneration",
+		"Description": "Increases health regeneration rate",
+		"Default": 1
+	},
+	{
+		"ID": 21,
+		"Name": "Mana Regeneration",
+		"Description": "Increases mana regeneration rate",
+		"Default": 1
+	},
+	{
+		"ID": 22,
+		"Name": "Lifesteal Power",
+		"Description": "The amount of HP you will steal when you lifesteal",
+		"Default": 1
+	},
+	{
+		"ID": 23,
+		"Name": "Manasteal Power",
+		"Description": "The amount of HP you will steal when you manasteal",
+		"Default": 1
+	},
+	{
+		"ID": 24,
+		"Name": "Poison Chance",
+		"Description": "The chance to apply poison status effect on hit"
+	},
+	{
+		"ID": 25,
+		"Name": "Bonus Projectile Chance",
+		"Description": "The chance to shoot an extra projectile"
+	},
+	{
+		"ID": 26,
+		"Name": "Size Bonus",
+		"Description": "Increases or decreases the size of your collider"
+	},
+	{
+		"ID": 27,
+		"Name": "Explosion Size Bonus",
+		"Description": "Increases or decreases the size of your collider"
+	},
+	{
+		"ID": 28,
+		"Name": "Burn Chance",
+		"Description": "The chance to apply burn status effect on hit"
+	},
+	{
+		"ID": 29,
+		"Name": "Battle Frenzy",
+		"Description": "Upon taking damage, gain Enraged status effect for 5 seconds"
+	},
+	{
+		"ID": 30,
+		"Name": "Wraith Form",
+		"Description": "Gives a percent chance to become Intangible when taking damage"
+	},
+	{
+		"ID": 31,
+		"Name": "Dancing Tempo",
+		"Description": "Upon dashing, gain Rapid Fire status effect for 2 seconds"
+	},
+	{
+		"ID": 32,
+		"Name": "Demonic Dance",
+		"Description": "Upon dashing, gain Vicious status effect for 2 seconds"
+	},
+	{
+		"ID": 33,
+		"Name": "Bonus Attack Speed",
+		"Description": "Increases your attack rate"
+	},
+	{
+		"ID": 34,
+		"Name": "Arcane Ripple",
+		"Description": "Upon casting an ability, summon an arcane missile (once per second)"
+	},
+	{
+		"ID": 35,
+		"Name": "Explosive Dash",
+		"Description": "Upon dashing, leave behind an explosion"
+	},
+	{
+		"ID": 36,
+		"Name": "Mystic Echo",
+		"Description": "Upon casting an ability, gain Focused status effect for 5 seconds"
+	},
+	{
+		"ID": 37,
+		"Name": "Bind Chance",
+		"Description": "The chance to apply bind status effect on hit"
+	},
+	{
+		"ID": 38,
+		"Name": "Pierce Chance",
+		"Description": "The chance for each projectile you shoot to pierce"
+	},
+	{
+		"ID": 39,
+		"Name": "Arcane Friction",
+		"Description": "Upon dashing, gain 1 mana"
+	},
+	{
+		"ID": 40,
+		"Name": "Vital Friction",
+		"Description": "Upon dashing, gain 1 health"
+	},
+	{
+		"ID": 41,
+		"Name": "Chilling Aura",
+		"Description": "Upon taking damage, apply slow to the enemy who damaged you"
+	},
+	{
+		"ID": 42,
+		"Name": "Thorns",
+		"Description": "Upon taking damage, deal your Thorns as damage to the enemy who damaged you (nonlethal)"
+	},
+	{
+		"ID": 43,
+		"Name": "Windwalker Step",
+		"Description": "Upon succesfully dodging, gain haste for 5 seconds"
+	},
+	{
+		"ID": 44,
+		"Name": "Frostweave Nova",
+		"Description": "Upon taking damage, cause an explosion that clears nearby bullets slows monsters"
+	},
+	{
+		"ID": 45,
+		"Name": "Backstab",
+		"Description": "Projectiles will now have backstab"
+	},
+	{
+		"ID": 46,
+		"Name": "Luck",
+		"Description": "Gain additional chance for bosses to drop multiple items"
+	},
+	{
+		"ID": 47,
+		"Name": "Bleed Chance",
+		"Description": "The chance to apply bleed status effect on hit"
+	},
+	{
+		"ID": 48,
+		"Name": "Burn Reduction",
+		"Description": "Decrease the amount of damage you receive while burning"
+	},
+	{
+		"ID": 49,
+		"Name": "Bleed Reduction",
+		"Description": "Decrease the amount of damage you receive while bleeding"
+	},
+	{
+		"ID": 50,
+		"Name": "Poison Reduction",
+		"Description": "Decrease the amount of damage you receive while poisoned"
+	},
+	{
+		"ID": 51,
+		"Name": "Stealth",
+		"Description": "Decreases monster aggressiveness towards you"
+	},
+	{
+		"ID": 52,
+		"Name": "Explode On Death",
+		"Description": "Upon dying, spawn an explosion of projectiles"
+	},
+	{
+		"ID": 53,
+		"Name": "Damage %",
+		"FullName": "Bonus Damage Percent",
+		"Description": "Increases projectile damage by a percent"
+	},
+	{
+		"ID": 54,
+		"Name": "Energy",
+		"Description": "Increases mana points",
+		"Icon": "item-consumable-spd-0.png"
+	},
+	{
+		"ID": 55,
+		"Name": "No Health Regeneration",
+		"Description": "You no longer regenerate health",
+		"LowerIsBetter": true
+	},
+	{
+		"ID": 56,
+		"Name": "Assassinate",
+		"Description": "Upon backstabbing, make the enemy Fragile (once every 3 seconds)"
+	},
+	{
+		"ID": 57,
+		"Name": "Opportunist",
+		"Description": "Upon backstabbing, gain Vicious status effect for 3 seconds"
+	},
+	{
+		"ID": 58,
+		"Name": "Vanish",
+		"Description": "Upon killing an enemy, gain Shadowstep status effect for 3 seconds"
+	},
+	{
+		"ID": 59,
+		"Name": "Endless Dance",
+		"Description": "Upon killing an enemy, regain a dash"
+	},
+	{
+		"ID": 60,
+		"Name": "Flowing Strikes",
+		"Description": "Hits while you have Rapid Fire cut your dash recharge by 10% (once every 0.5 seconds)"
+	},
+	{
+		"ID": 61,
+		"Name": "Riposte",
+		"Description": "Upon dodging, cut your dash recharge by 50%"
+	},
+	{
+		"ID": 62,
+		"Name": "Spellweaver",
+		"Description": "Hits cut your ability cooldown by 2%"
+	},
+	{
+		"ID": 63,
+		"Name": "Arcane Flow",
+		"Description": "Critical hits cut your ability cooldown by 5%"
+	},
+	{
+		"ID": 64,
+		"Name": "Soul Siphon",
+		"Description": "Upon killing an enemy, gain 4 mana"
+	},
+	{
+		"ID": 65,
+		"Name": "Deadeye",
+		"Description": "Upon a critical hit, make the enemy Fractured (once every 2 seconds)"
+	},
+	{
+		"ID": 66,
+		"Name": "Executioner",
+		"Description": "Upon hitting an enemy below 30% health, gain Vicious status effect for 2 seconds"
+	},
+	{
+		"ID": 67,
+		"Name": "Headhunter",
+		"Description": "Upon killing an enemy, gain Reflexive status effect for 4 seconds"
+	},
+	{
+		"ID": 68,
+		"Name": "Volatile",
+		"Description": "Upon a critical hit, set off an explosion on the enemy (once per second)"
+	},
+	{
+		"ID": 69,
+		"Name": "Chain Reaction",
+		"Description": "Upon killing an enemy, set off a small explosion where it died"
+	},
+	{
+		"ID": 70,
+		"Name": "Powder Keg",
+		"Description": "Upon killing an enemy, cut your dash recharge by 25%"
+	},
+	{
+		"ID": 71,
+		"Name": "Epidemic",
+		"Description": "Upon killing an enemy with Poison, Bleed or Burn, it bursts and poisons the enemies around it"
+	},
+	{
+		"ID": 72,
+		"Name": "Festering",
+		"Description": "Upon hitting an enemy with Poison, Bleed or Burn, make it Weakened (once every 3 seconds)"
+	},
+	{
+		"ID": 73,
+		"Name": "Phantom",
+		"Description": "Upon dodging, become Intangible for 1 second (once every 5 seconds)"
+	},
+	{
+		"ID": 74,
+		"Name": "Slipstream",
+		"Description": "Upon dodging, gain Haste status effect for 2 seconds"
+	},
+	{
+		"ID": 75,
+		"Name": "Measured Strikes",
+		"Description": "Upon a critical hit, gain Enraged status effect for 3 seconds"
+	},
+	{
+		"ID": 76,
+		"Name": "Undying",
+		"Description": "Upon a hit leaving you below 30% health, gain Invulnerable status effect for 2 seconds (once every 20 seconds)"
+	},
+	{
+		"ID": 77,
+		"Name": "Second Wind",
+		"Description": "Upon a hit leaving you below 50% health, gain Healing status effect for 3 seconds (once every 10 seconds)"
+	},
+	{
+		"ID": 78,
+		"Name": "Rending Fury",
+		"Description": "Hits while you are Enraged make the enemy Bleed (once per second)"
+	},
+	{
+		"ID": 79,
+		"Name": "Bloodlust",
+		"Description": "Upon killing an enemy, gain 3 health"
+	},
+	{
+		"ID": 80,
+		"Name": "Shatterpoint",
+		"Description": "Upon taking damage, clear the enemy shots near you (once every 4 seconds)"
+	},
+	{
+		"ID": 81,
+		"Name": "Deflection",
+		"Description": "Upon dashing past an enemy shot, summon an arcane missile"
+	},
+	{
+		"ID": 82,
+		"Name": "Shockwave",
+		"Description": "Upon a hit leaving you below 40% health, clear the enemy shots around you (once every 30 seconds)"
+	},
+	{
+		"ID": 83,
+		"Name": "Blood Magic",
+		"Description": "Abilities cost health instead of mana"
+	},
+	{
+		"ID": 84,
+		"Name": "Transfusion",
+		"Description": "Upon casting an ability, gain Healing status effect for 3 seconds (once every 6 seconds)"
+	},
+	{
+		"ID": 85,
+		"Name": "Necromancy",
+		"Description": "Upon killing an enemy, 2 spirits rise from it and hunt nearby enemies"
+	},
+	{
+		"ID": 86,
+		"Name": "Grave Chill",
+		"Description": "Upon killing an enemy, a chill bursts from it that slows the enemies around it"
+	},
+	{
+		"ID": 87,
+		"Name": "Bone Armor",
+		"Description": "Upon killing an enemy, gain Armored status effect for 4 seconds"
+	},
+	{
+		"ID": 88,
+		"Name": "Blade Wake",
+		"Description": "Upon dashing, send a slash along your dash that cuts through every enemy in its path"
+	},
+	{
+		"ID": 89,
+		"Name": "Overflow",
+		"Description": "Gives a percent chance to summon an arcane missile on hit"
+	},
+	{
+		"ID": 90,
+		"Name": "Minefield",
+		"Description": "Upon dashing, drop a mine that explodes when an enemy touches it"
+	},
+	{
+		"ID": 91,
+		"Name": "Spite",
+		"Description": "Upon taking damage, drop a mine at your feet (once every 3 seconds)"
+	},
+	{
+		"ID": 92,
+		"Name": "Caltrops",
+		"Description": "Upon dashing, scatter caltrops around you that hurt every enemy that steps on them"
+	},
+	{
+		"ID": 93,
+		"Name": "Bonus Invulnerability",
+		"Description": "Every point adds 10 ms to how long you are invulnerable after getting hit"
+	},
+	{
+		"ID": 94,
+		"Name": "Earthshaker",
+		"Description": "Upon hitting an enemy, send a shockwave out around you (once every 2 seconds)"
+	},
+	{
+		"ID": 95,
+		"Name": "Aftershock",
+		"Description": "Upon killing an enemy, send a small shockwave out around you"
+	},
+	{
+		"ID": 96,
+		"Name": "Tremor",
+		"Description": "Upon hitting an enemy, make it Slow for 1 second (once every 2 seconds)"
+	}
+]

@@ -22,30 +22,34 @@ Uses Firebase Firestore straight from the browser (free Spark plan, no card).
 ```
 rules_version = '2';
 service cloud.firestore { match /databases/{db}/documents { match /builds/{id} {
+  function valid(d) {
+    return d.keys().hasOnly(['name','skills','createdAt','base','equip','author','owner'])
+      && d.name is string && d.name.size() > 0 && d.name.size() <= 40
+      && d.skills is list && d.skills.size() > 0 && d.skills.size() <= 500
+      && (!('base' in d) || (d.base is string && d.base.size() <= 30))
+      && (!('equip' in d) || (d.equip is list && d.equip.size() <= 12))
+      && (!('author' in d) || (d.author is string && d.author.size() <= 30));
+  }
   allow read: if true;
-  allow create: if request.resource.data.keys().hasOnly(['name','skills','createdAt','base','equip','author'])
-    && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 40
-    && request.resource.data.skills is list && request.resource.data.skills.size() > 0 && request.resource.data.skills.size() <= 500
-    && (!('base' in request.resource.data) || (request.resource.data.base is string && request.resource.data.base.size() <= 30))
-    && (!('equip' in request.resource.data) || (request.resource.data.equip is list && request.resource.data.equip.size() <= 12))
-    && (!('author' in request.resource.data) || (request.resource.data.author is string && request.resource.data.author.size() <= 30));
-  allow update: if false;
-  allow delete: if false;
+  allow create: if request.auth != null && request.resource.data.owner == request.auth.uid && valid(request.resource.data);
+  allow update: if request.auth != null && (
+      (resource.data.get('owner', '') == request.auth.uid && request.resource.data.owner == resource.data.owner
+        && request.resource.data.createdAt == resource.data.createdAt && valid(request.resource.data))
+      || (request.auth.token.get('email', '') == 'admin@mythskillbuilder.app'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','author'])));
+  allow delete: if request.auth != null && (resource.data.get('owner', '') == request.auth.uid
+      || request.auth.token.get('email', '') == 'admin@mythskillbuilder.app');
 } } }
 ```
 4. Project settings (gear) → General → **Your apps → Web (`</>`)** → register an app → copy `projectId` and `apiKey` from the config shown.
 5. Paste both into `public/js/config.js`, push to GitHub. These values are meant to be public.
+Also enable **Authentication -> Sign-in method -> Anonymous**: each browser gets a hidden random id, stamped on its builds as `owner`, so players can edit and delete their own builds without accounts.
 Without this, Publish saves to the visitor's own browser.
 
 **Admin mode (optional):** type the admin code anywhere on the page (not inside a text box) to toggle admin mode; Community then shows Rename and Delete buttons on each build. The typed code is the real password of a Firebase user, and only its SHA-256 is in `main.js` (`ADMIN_HASH`, `ADMIN_LEN`), so the code itself is not in the source and Firebase enforces who may rename/delete. Do not write the code in this repo (it is public).
 1. Firebase console -> **Authentication -> Get started -> Sign-in method -> Email/Password -> Enable**.
 2. Authentication -> **Users -> Add user**: email `admin@mythskillbuilder.app` (must match `ADMIN_EMAIL` in `js/config.js`) and your admin code as the password.
-3. Firestore -> Rules: use the admin rules below (update + delete only for that email) and Publish:
-```
-  allow update: if request.auth != null && request.auth.token.email == 'admin@mythskillbuilder.app'
-    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','author']);
-  allow delete: if request.auth != null && request.auth.token.email == 'admin@mythskillbuilder.app';
-```
+3. The rules above already allow rename/delete for that email.
 To change the code: set the new password on that Firebase user, then put `sha256(code)` and its length in `ADMIN_HASH` / `ADMIN_LEN` (`node -e 'console.log(require("crypto").createHash("sha256").update("CODE").digest("hex"))'`).
 
 ## Where the data comes from (patch v0.21.0)

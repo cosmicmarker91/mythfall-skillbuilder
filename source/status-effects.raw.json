@@ -1,0 +1,905 @@
+[
+	{
+		"ID": 0,
+		"Name": "Shield",
+		"Description": "Adds a protective shield",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Shield",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 1,
+		"Name": "Invulnerable",
+		"Description": "Prevent all damage",
+		"Icon": "icon-effect-invulnerable-0.png",
+		"Color": "#4f8fba",
+		"Tiers": [
+			{
+				"Name": "Invulnerable",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 2,
+		"Name": "Invulnerable",
+		"Description": "Prevent damage from hits",
+		"Icon": "icon-effect-invulnerable-0.png",
+		"Color": "#4f8fba",
+		"Tiers": [
+			{
+				"Name": "Invulnerable",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 3,
+		"Name": "Haste",
+		"Description": "Increase movement speed",
+		"Icon": "icon-effect-haste-0.png",
+		"Color": "#df84a5",
+		"Tiers": [
+			{
+				"Name": "Haste I",
+				"Rows": [
+					{
+						"Text": "+10 Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Haste II",
+				"Rows": [
+					{
+						"Text": "+15 Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Haste III",
+				"Rows": [
+					{
+						"Text": "+20 Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Haste IV",
+				"Rows": [
+					{
+						"Text": "+30 Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 4,
+		"Name": "Bind",
+		"Description": "Prevents you from moving",
+		"Icon": "icon-effect-bind-0.png",
+		"Color": "#3c5e8b",
+		"Tiers": [
+			{
+				"Name": "Bind",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 5,
+		"Name": "Enraged",
+		"Description": "Increases strength",
+		"Icon": "icon-effect-enraged-0.png",
+		"Color": "#a53030",
+		"Tiers": [
+			{
+				"Name": "Enraged I",
+				"Rows": [
+					{
+						"Text": "+2 Strength",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Enraged II",
+				"Rows": [
+					{
+						"Text": "+3 Strength",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Enraged III",
+				"Rows": [
+					{
+						"Text": "+4 Strength",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Enraged IV",
+				"Rows": [
+					{
+						"Text": "+5 Strength",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 6,
+		"Name": "Focused",
+		"Description": "Increases willpower",
+		"Icon": "icon-effect-focused-0.png",
+		"Color": "#4f8fba",
+		"Tiers": [
+			{
+				"Name": "Focused",
+				"Rows": [
+					{
+						"Text": "+5 Willpower",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 7,
+		"Name": "Reflexive",
+		"Description": "Increases Dexterity",
+		"Icon": "icon-effect-reflexive-0.png",
+		"Color": "#de9e41",
+		"Tiers": [
+			{
+				"Name": "Reflexive I",
+				"Rows": [
+					{
+						"Text": "+2 Dexterity",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Reflexive II",
+				"Rows": [
+					{
+						"Text": "+3 Dexterity",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Reflexive III",
+				"Rows": [
+					{
+						"Text": "+4 Dexterity",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Reflexive IV",
+				"Rows": [
+					{
+						"Text": "+5 Dexterity",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 8,
+		"Name": "Rapid Fire",
+		"Description": "Increase attack rate",
+		"Icon": "icon-effect-rapidfire-0.png",
+		"Color": "#de9e41",
+		"Tiers": [
+			{
+				"Name": "Rapid Fire I",
+				"Rows": [
+					{
+						"Text": "+3 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Rapid Fire II",
+				"Rows": [
+					{
+						"Text": "+5 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Rapid Fire III",
+				"Rows": [
+					{
+						"Text": "+8 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Rapid Fire IV",
+				"Rows": [
+					{
+						"Text": "+10 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 9,
+		"Name": "Healing",
+		"Description": "Temporarily increase Health regeneration",
+		"Icon": "icon-effect-healing-0.png",
+		"Color": "#75a743",
+		"Tiers": [
+			{
+				"Name": "Healing I",
+				"Rows": [
+					{
+						"Text": "+1 Health Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Healing II",
+				"Rows": [
+					{
+						"Text": "+2 Health Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Healing III",
+				"Rows": [
+					{
+						"Text": "+3 Health Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Healing IV",
+				"Rows": [
+					{
+						"Text": "+4 Health Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 10,
+		"Name": "Energized",
+		"Description": "Temporarily increase Mana regeneration",
+		"Icon": "icon-effect-energized-0.png",
+		"Color": "#4f8fba",
+		"Tiers": [
+			{
+				"Name": "Energized",
+				"Rows": [
+					{
+						"Text": "+2 Mana Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 11,
+		"Name": "Armored",
+		"Description": "Increases Defense",
+		"Icon": "icon-effect-guarded-0.png",
+		"Color": "#577277",
+		"Tiers": [
+			{
+				"Name": "Armored I",
+				"Rows": [
+					{
+						"Text": "+3 Defense",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Armored II",
+				"Rows": [
+					{
+						"Text": "+5 Defense",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Armored III",
+				"Rows": [
+					{
+						"Text": "+7 Defense",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Armored IV",
+				"Rows": [
+					{
+						"Text": "+10 Defense",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 12,
+		"Name": "Vicious",
+		"Description": "Increase critical chance",
+		"Icon": "icon-effect-vicious-0.png",
+		"Color": "#a53030",
+		"Tiers": [
+			{
+				"Name": "Vicious I",
+				"Rows": [
+					{
+						"Text": "+5 Critical Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Vicious II",
+				"Rows": [
+					{
+						"Text": "+10 Critical Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Vicious III",
+				"Rows": [
+					{
+						"Text": "+15 Critical Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Vicious IV",
+				"Rows": [
+					{
+						"Text": "+20 Critical Chance",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 13,
+		"Name": "Intangible",
+		"Description": "Reduce all damage taken to 1",
+		"Icon": "icon-effect-intangible-0.png",
+		"Color": "#7a367b",
+		"Tiers": [
+			{
+				"Name": "Intangible",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 14,
+		"Name": "Intangible",
+		"Description": "Reduce all damage taken to 1",
+		"Icon": "icon-effect-intangible-0.png",
+		"Color": "#7a367b",
+		"Tiers": [
+			{
+				"Name": "Intangible",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 15,
+		"Name": "Slowed",
+		"Description": "Decreases movement speed",
+		"Icon": "icon-effect-slow-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Slowed",
+				"Rows": [
+					{
+						"Text": "0.5x Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 16,
+		"Name": "Slimed",
+		"Description": "Decreases attack and movement speed",
+		"Icon": "icon-effect-slime-0.png",
+		"Color": "#468232",
+		"Tiers": [
+			{
+				"Name": "Slimed",
+				"Rows": [
+					{
+						"Text": "-10 Bonus Attack Speed",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "0.7x Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 17,
+		"Name": "Confused",
+		"Description": "Movement direction is confused",
+		"Icon": "icon-effect-confused-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Confused",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 18,
+		"Name": "Fractured",
+		"Description": "Reduces defense",
+		"Icon": "icon-effect-guardbreak-0.png",
+		"Color": "#577277",
+		"Tiers": [
+			{
+				"Name": "Fractured",
+				"Rows": [
+					{
+						"Text": "0.5x Defense",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 19,
+		"Name": "Weakened",
+		"Description": "Decreases ability to deal damage",
+		"Icon": "icon-effect-weakened-0.png",
+		"Color": "#7a367b",
+		"Tiers": [
+			{
+				"Name": "Weakened",
+				"Rows": [
+					{
+						"Text": "-10 Strength",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "-10 Willpower",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "-10 Dexterity",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 20,
+		"Name": "Fragile",
+		"Description": "Increases Vulnerability",
+		"Icon": "icon-effect-fragile-0.png",
+		"Color": "#a53030",
+		"Tiers": [
+			{
+				"Name": "Fragile",
+				"Rows": [
+					{
+						"Text": "1.5x Damage Received",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 21,
+		"Name": "Stunned",
+		"Description": "Prevents movement, attacks, and abilities",
+		"Icon": "icon-effect-stun-0.png",
+		"Color": "#3c5e8b",
+		"Tiers": [
+			{
+				"Name": "Stunned",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 22,
+		"Name": "Silenced",
+		"Description": "Prevents casting abilities",
+		"Icon": "icon-effect-silenced-0.png",
+		"Color": "#3c5e8b",
+		"Tiers": [
+			{
+				"Name": "Silenced",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 23,
+		"Name": "Teleblocked",
+		"Description": "Prevents teleports",
+		"Icon": "icon-effect-stun-0.png",
+		"Color": "#3c5e8b",
+		"Tiers": [
+			{
+				"Name": "Teleblocked",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 24,
+		"Name": "Shunted",
+		"Description": "Prevents dashing",
+		"Icon": "icon-effect-shunted-0.png",
+		"Color": "#3c5e8b",
+		"Tiers": [
+			{
+				"Name": "Shunted",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 25,
+		"Name": "Bleed",
+		"Description": "Deals damage over time and adds vulnerability",
+		"Icon": "icon-effect-bleed-0.png",
+		"Color": "#a53030",
+		"Tiers": [
+			{
+				"Name": "Bleed",
+				"Rows": [
+					{
+						"Text": "1.2x Damage Received",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 26,
+		"Name": "Burn",
+		"Description": "Deals damage over time",
+		"Icon": "icon-effect-burn-0.png",
+		"Color": "#cf573c",
+		"Tiers": [
+			{
+				"Name": "Burn",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 27,
+		"Name": "Poison",
+		"Description": "Deals damage over time. Prevents health and regeneration",
+		"Icon": "icon-effect-poison-0.png",
+		"Color": "#75a743",
+		"Tiers": [
+			{
+				"Name": "Poison",
+				"Rows": [
+					{
+						"Text": "0x Health Regeneration",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "0x Mana Regeneration",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 28,
+		"Name": "Dwarven Drums",
+		"Description": "Increase fire rate with hammer",
+		"Icon": "icon-effect-dwarvendrums-0.png",
+		"Color": "#de9e41",
+		"Tiers": [
+			{
+				"Name": "Dwarven Drums I",
+				"Rows": [
+					{
+						"Text": "With Hammer:",
+						"Color": "#aaaaaa"
+					},
+					{
+						"Text": "+3 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Dwarven Drums II",
+				"Rows": [
+					{
+						"Text": "With Hammer:",
+						"Color": "#aaaaaa"
+					},
+					{
+						"Text": "+5 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Dwarven Drums III",
+				"Rows": [
+					{
+						"Text": "With Hammer:",
+						"Color": "#aaaaaa"
+					},
+					{
+						"Text": "+7 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Dwarven Drums IV",
+				"Rows": [
+					{
+						"Text": "With Hammer:",
+						"Color": "#aaaaaa"
+					},
+					{
+						"Text": "+10 Bonus Attack Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 29,
+		"Name": "Bloodletting Ritual",
+		"Description": "Increase lifesteal",
+		"Icon": "icon-effect-bloodletting-0.png",
+		"Color": "#a53030",
+		"Tiers": [
+			{
+				"Name": "Bloodletting Ritual I",
+				"Rows": [
+					{
+						"Text": "+8 Lifesteal Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Bloodletting Ritual II",
+				"Rows": [
+					{
+						"Text": "+16 Lifesteal Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Bloodletting Ritual III",
+				"Rows": [
+					{
+						"Text": "+24 Lifesteal Chance",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Bloodletting Ritual IV",
+				"Rows": [
+					{
+						"Text": "+32 Lifesteal Chance",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 30,
+		"Name": "Shadowstep",
+		"Description": "Faster dash recovery",
+		"Icon": "icon-effect-shadowstep-0.png",
+		"Color": "#394a50",
+		"Tiers": [
+			{
+				"Name": "Shadowstep I",
+				"Rows": [
+					{
+						"Text": "+25 Dash CDR",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Shadowstep II",
+				"Rows": [
+					{
+						"Text": "+50 Dash CDR",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Shadowstep III",
+				"Rows": [
+					{
+						"Text": "+75 Dash CDR",
+						"Color": "#e8c170"
+					}
+				]
+			},
+			{
+				"Name": "Shadowstep IV",
+				"Rows": [
+					{
+						"Text": "+100 Dash CDR",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	},
+	{
+		"ID": 31,
+		"Name": "Vitality",
+		"Description": "Modifies your vitality stat",
+		"Icon": "icon-effect-vit-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Vitality",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 32,
+		"Name": "Willpower",
+		"Description": "Modifies your willpower stat",
+		"Icon": "icon-effect-wil-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Willpower",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 33,
+		"Name": "Strength",
+		"Description": "Modifies your strength stat",
+		"Icon": "icon-effect-str-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Strength",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 34,
+		"Name": "Dexterity",
+		"Description": "Modifies your dexterity stat",
+		"Icon": "icon-effect-dex-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Dexterity",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 35,
+		"Name": "Defense",
+		"Description": "Modifies your defense stat",
+		"Icon": "icon-effect-def-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Defense",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 36,
+		"Name": "Speed",
+		"Description": "Modifies your speed stat",
+		"Icon": "icon-effect-spd-0.png",
+		"Color": "#e8c170",
+		"Tiers": [
+			{
+				"Name": "Speed",
+				"Rows": []
+			}
+		]
+	},
+	{
+		"ID": 37,
+		"Name": "Blessing of the Awakened",
+		"Description": "You are blessed",
+		"Icon": "icon-effect-awakened-0.png",
+		"Color": "#75a743",
+		"Tiers": [
+			{
+				"Name": "Blessing of the Awakened",
+				"Rows": [
+					{
+						"Text": "+5 Vitality",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "+5 Defense",
+						"Color": "#e8c170"
+					},
+					{
+						"Text": "+5 Speed",
+						"Color": "#e8c170"
+					}
+				]
+			}
+		]
+	}
+]

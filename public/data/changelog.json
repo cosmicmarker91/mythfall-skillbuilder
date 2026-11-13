@@ -1,31 +1,76 @@
 [
-  { "date": "2026-11-09", "title": "Moved to Cloudflare Pages", "items": [
-    "The site moved from Cloudflare Workers to Cloudflare Pages, so it now lives at a new address (mythfall-skillbuilder.pages.dev). Share links still work, just on the new address.",
-    "The top-right bar can now be collapsed and opened again with the arrow button. It remembers your choice.",
-    "Publish now asks for the build name and an optional Author in a small popup under the Publish button, so the top-right bar is shorter. The author is saved in share links and shown in the Community list."
-  ] },
-  { "date": "2026-11-09", "title": "Rules and changelog", "items": [
-    "You can now only pick one starting node. Once you buy one, the other six grey out.",
-    "Maximum of 28 skillpoints. If you try to buy past it, you get a message saying the maximum is 28, and links or builds that go over are cut down to fit.",
-    "Added this changelog.",
-    "New \"Clear All Equipment\" and \"Reset Stat Points\" buttons on the Character screen.",
-    "Publishing to the community now also saves your base stats and equipment, and loading a community build restores them."
-  ] },
-  { "date": "2026-11-08", "title": "Character, equipment and sharing", "items": [
-    "New Character screen (helmet button): base stats with - / + buttons (max 20 each, 100 total), bonus stats from your skills and gear, and the damage-taken numbers.",
-    "Skill descriptions that depend on your stats (like Body Slam, Shadow Strength, Defensive Conversion) now show the real number.",
-    "Equipment: click a slot to pick items. 412 items from the game data with in-game style tooltips, rarity colours and live scaling from your total stats. Items are listed by rarity, then tier.",
-    "Item data can be refreshed after a patch with one saved file and one command.",
-    "Much shorter share links. Old links still work.",
-    "The site remembers your last build when you open it again.",
-    "Admin mode for removing community builds."
-  ] },
-  { "date": "2026-11-07", "title": "Skill tree rebuilt for the new game version", "items": [
-    "Whole tree redrawn from the game's v0.21.0 data: 188 nodes with names, effects and icons from the wiki.",
-    "Hover a node to see its name and the cheapest path from a starting node, with the skillpoint cost.",
-    "Click a node to select it (a tick appears), click again or double-click to buy.",
-    "Keystones sever connections: paths can end on one but never run through it.",
-    "Info panel in the bottom right like the game, and Pixel-style frames for owned and highlighted nodes.",
-    "Community builds: publish and load builds from other players."
-  ] }
+ {
+  "date": "2026-11-14",
+  "title": "Max stat buttons",
+  "items": [
+   "Each base stat now has a » button that sets it to 20 (or as high as the 100 total limit allows).",
+   "New Max All button next to Reset Stat Points: it sets Vitality, Energy, Defense and Strength to 20 and leaves Willpower and Dexterity alone."
+  ]
+ },
+ {
+  "date": "2026-11-14",
+  "title": "DPS test",
+  "items": [
+   "New Test DPS button on the Character screen. It simulates a 10-second fight against a training dummy with your weapon, base stats and skills, and shows the result instantly, plus the average of 400 runs.",
+   "Click View test to watch the fight: the dummy flashes white on every hit, damage numbers pop up, a DPS counter runs, and status effects (like Poison or Bleed) show as icons above its head.",
+   "New Effects button: pick buffs from the full books (like Enraged IV or Vicious III) to have active during the test.",
+   "The Effects window also has Dash effects from your gear and skills (like Demon Mask for crit or Dancing Tempo and Glass Tiara for attack speed), each with a switch plus one switch for all of them. They start off.",
+   "It counts weapon damage and scaling, attack rate, Bonus Attack Speed (each point adds 0.1 to the weapon's rate), extra projectiles, critical hits (x1.75), bonus damage, explosions and impact shots. You can switch on Bleed for the dummy (+20% damage taken) and the passive Measured Strikes. If two effects are the same, the higher tier overwrites the lower one. Poison, Burn and Bleed damage over time is ignored."
+  ]
+ },
+ {
+  "date": "2026-11-14",
+  "title": "Edit and delete your own builds",
+  "items": [
+   "You can now delete builds you published from the Community list. It works per browser (no account needed), so clearing your browser data means you can no longer delete or edit the old ones. If you end up clearing your browser data, contact the admin (cosmic) for him to delete it.",
+   "New Edit button on your own builds in Community. While editing, the title shows (editing) and the top-right bar is replaced by Confirm and Cancel. Confirm saves the changes to the published build, Cancel goes back to what you had.",
+   "Hover any base stat or bonus stat on the Character screen to see what it does (descriptions come from the wiki's game data).",
+   "Fixed the hover cards on the Character screen sitting far from the mouse."
+  ]
+ },
+ {
+  "date": "2026-11-09",
+  "title": "Moved to Cloudflare Pages",
+  "items": [
+   "The site moved from Cloudflare Workers to Cloudflare Pages, so it now lives at a new address (mythfall-skillbuilder.pages.dev). Share links still work, just on the new address.",
+   "The top-right bar can now be collapsed and opened again with the arrow button. It remembers your choice.",
+   "Publish now asks for the build name and an optional Author in a small popup under the Publish button, so the top-right bar is shorter. The author is saved in share links and shown in the Community list."
+  ]
+ },
+ {
+  "date": "2026-11-09",
+  "title": "Rules and changelog",
+  "items": [
+   "You can now only pick one starting node. Once you buy one, the other six grey out.",
+   "Maximum of 28 skillpoints. If you try to buy past it, you get a message saying the maximum is 28, and links or builds that go over are cut down to fit.",
+   "Added this changelog.",
+   "New \"Clear All Equipment\" and \"Reset Stat Points\" buttons on the Character screen.",
+   "Publishing to the community now also saves your base stats and equipment, and loading a community build restores them."
+  ]
+ },
+ {
+  "date": "2026-11-08",
+  "title": "Character, equipment and sharing",
+  "items": [
+   "New Character screen (helmet button): base stats with - / + buttons (max 20 each, 100 total), bonus stats from your skills and gear, and the damage-taken numbers.",
+   "Skill descriptions that depend on your stats (like Body Slam, Shadow Strength, Defensive Conversion) now show the real number.",
+   "Equipment: click a slot to pick items. 412 items from the game data with in-game style tooltips, rarity colours and live scaling from your total stats. Items are listed by rarity, then tier.",
+   "Item data can be refreshed after a patch with one saved file and one command.",
+   "Much shorter share links. Old links still work.",
+   "The site remembers your last build when you open it again.",
+   "Admin mode for removing community builds."
+  ]
+ },
+ {
+  "date": "2026-11-07",
+  "title": "Skill tree rebuilt for the new game version",
+  "items": [
+   "Whole tree redrawn from the game's v0.21.0 data: 188 nodes with names, effects and icons from the wiki.",
+   "Hover a node to see its name and the cheapest path from a starting node, with the skillpoint cost.",
+   "Click a node to select it (a tick appears), click again or double-click to buy.",
+   "Keystones sever connections: paths can end on one but never run through it.",
+   "Info panel in the bottom right like the game, and Pixel-style frames for owned and highlighted nodes.",
+   "Community builds: publish and load builds from other players."
+  ]
+ }
 ]

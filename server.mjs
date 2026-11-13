@@ -48,7 +48,12 @@ http.createServer(async (req, res) => {
       const b = await readBody(req);
       const name = String(b.name || "").trim().slice(0, 40), author = String(b.author || "").trim().slice(0, 30);
       if (!name) return send(res, 400, { error: "name required" });
-      const all = (await readBuilds()).map((x) => (x.id === del[1] ? { ...x, name, author } : x));
+      const skills = Array.isArray(b.skills) ? b.skills.filter((t) => typeof t === "string" && t.length <= 64).slice(0, 500) : null;
+      const extra = {};
+      if (skills && skills.length) extra.skills = skills;
+      if ("base" in b) extra.base = Array.isArray(b.base) && b.base.length === 6 ? b.base.map((x) => Math.max(0, Math.min(20, Math.trunc(+x) || 0))) : null;
+      if ("equip" in b) extra.equip = Array.isArray(b.equip) ? b.equip.map(Number).filter(Number.isInteger).slice(0, 12) : null;
+      const all = (await readBuilds()).map((x) => (x.id === del[1] ? { ...x, name, author, ...extra } : x));
       await fs.writeFile(store, JSON.stringify(all, null, 1));
       return send(res, 200, { ok: true });
     }

@@ -1,0 +1,448 @@
+{
+ "Shield": [
+  {
+   "tier": "Shield",
+   "rows": []
+  }
+ ],
+ "Invulnerable": [
+  {
+   "tier": "Invulnerable",
+   "rows": []
+  }
+ ],
+ "Haste": [
+  {
+   "tier": "Haste I",
+   "rows": [
+    "+10 Speed"
+   ]
+  },
+  {
+   "tier": "Haste II",
+   "rows": [
+    "+15 Speed"
+   ]
+  },
+  {
+   "tier": "Haste III",
+   "rows": [
+    "+20 Speed"
+   ]
+  },
+  {
+   "tier": "Haste IV",
+   "rows": [
+    "+30 Speed"
+   ]
+  }
+ ],
+ "Bind": [
+  {
+   "tier": "Bind",
+   "rows": []
+  }
+ ],
+ "Enraged": [
+  {
+   "tier": "Enraged I",
+   "rows": [
+    "+2 Strength"
+   ]
+  },
+  {
+   "tier": "Enraged II",
+   "rows": [
+    "+3 Strength"
+   ]
+  },
+  {
+   "tier": "Enraged III",
+   "rows": [
+    "+4 Strength"
+   ]
+  },
+  {
+   "tier": "Enraged IV",
+   "rows": [
+    "+5 Strength"
+   ]
+  }
+ ],
+ "Focused": [
+  {
+   "tier": "Focused",
+   "rows": [
+    "+5 Willpower"
+   ]
+  }
+ ],
+ "Reflexive": [
+  {
+   "tier": "Reflexive I",
+   "rows": [
+    "+2 Dexterity"
+   ]
+  },
+  {
+   "tier": "Reflexive II",
+   "rows": [
+    "+3 Dexterity"
+   ]
+  },
+  {
+   "tier": "Reflexive III",
+   "rows": [
+    "+4 Dexterity"
+   ]
+  },
+  {
+   "tier": "Reflexive IV",
+   "rows": [
+    "+5 Dexterity"
+   ]
+  }
+ ],
+ "Rapid Fire": [
+  {
+   "tier": "Rapid Fire I",
+   "rows": [
+    "+3 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Rapid Fire II",
+   "rows": [
+    "+5 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Rapid Fire III",
+   "rows": [
+    "+8 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Rapid Fire IV",
+   "rows": [
+    "+10 Bonus Attack Speed"
+   ]
+  }
+ ],
+ "Healing": [
+  {
+   "tier": "Healing I",
+   "rows": [
+    "+1 Health Regeneration"
+   ]
+  },
+  {
+   "tier": "Healing II",
+   "rows": [
+    "+2 Health Regeneration"
+   ]
+  },
+  {
+   "tier": "Healing III",
+   "rows": [
+    "+3 Health Regeneration"
+   ]
+  },
+  {
+   "tier": "Healing IV",
+   "rows": [
+    "+4 Health Regeneration"
+   ]
+  }
+ ],
+ "Energized": [
+  {
+   "tier": "Energized",
+   "rows": [
+    "+2 Mana Regeneration"
+   ]
+  }
+ ],
+ "Armored": [
+  {
+   "tier": "Armored I",
+   "rows": [
+    "+3 Defense"
+   ]
+  },
+  {
+   "tier": "Armored II",
+   "rows": [
+    "+5 Defense"
+   ]
+  },
+  {
+   "tier": "Armored III",
+   "rows": [
+    "+7 Defense"
+   ]
+  },
+  {
+   "tier": "Armored IV",
+   "rows": [
+    "+10 Defense"
+   ]
+  }
+ ],
+ "Vicious": [
+  {
+   "tier": "Vicious I",
+   "rows": [
+    "+5 Critical Chance"
+   ]
+  },
+  {
+   "tier": "Vicious II",
+   "rows": [
+    "+10 Critical Chance"
+   ]
+  },
+  {
+   "tier": "Vicious III",
+   "rows": [
+    "+15 Critical Chance"
+   ]
+  },
+  {
+   "tier": "Vicious IV",
+   "rows": [
+    "+20 Critical Chance"
+   ]
+  }
+ ],
+ "Intangible": [
+  {
+   "tier": "Intangible",
+   "rows": []
+  }
+ ],
+ "Slowed": [
+  {
+   "tier": "Slowed",
+   "rows": [
+    "0.5x Speed"
+   ]
+  }
+ ],
+ "Slimed": [
+  {
+   "tier": "Slimed",
+   "rows": [
+    "-10 Bonus Attack Speed",
+    "0.7x Speed"
+   ]
+  }
+ ],
+ "Confused": [
+  {
+   "tier": "Confused",
+   "rows": []
+  }
+ ],
+ "Fractured": [
+  {
+   "tier": "Fractured",
+   "rows": [
+    "0.5x Defense"
+   ]
+  }
+ ],
+ "Weakened": [
+  {
+   "tier": "Weakened",
+   "rows": [
+    "-10 Strength",
+    "-10 Willpower",
+    "-10 Dexterity"
+   ]
+  }
+ ],
+ "Fragile": [
+  {
+   "tier": "Fragile",
+   "rows": [
+    "1.5x Damage Received"
+   ]
+  }
+ ],
+ "Stunned": [
+  {
+   "tier": "Stunned",
+   "rows": []
+  }
+ ],
+ "Silenced": [
+  {
+   "tier": "Silenced",
+   "rows": []
+  }
+ ],
+ "Teleblocked": [
+  {
+   "tier": "Teleblocked",
+   "rows": []
+  }
+ ],
+ "Shunted": [
+  {
+   "tier": "Shunted",
+   "rows": []
+  }
+ ],
+ "Bleed": [
+  {
+   "tier": "Bleed",
+   "rows": [
+    "1.2x Damage Received"
+   ]
+  }
+ ],
+ "Burn": [
+  {
+   "tier": "Burn",
+   "rows": []
+  }
+ ],
+ "Poison": [
+  {
+   "tier": "Poison",
+   "rows": [
+    "0x Health Regeneration",
+    "0x Mana Regeneration"
+   ]
+  }
+ ],
+ "Dwarven Drums": [
+  {
+   "tier": "Dwarven Drums I",
+   "rows": [
+    "With Hammer:",
+    "+3 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Dwarven Drums II",
+   "rows": [
+    "With Hammer:",
+    "+5 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Dwarven Drums III",
+   "rows": [
+    "With Hammer:",
+    "+7 Bonus Attack Speed"
+   ]
+  },
+  {
+   "tier": "Dwarven Drums IV",
+   "rows": [
+    "With Hammer:",
+    "+10 Bonus Attack Speed"
+   ]
+  }
+ ],
+ "Bloodletting Ritual": [
+  {
+   "tier": "Bloodletting Ritual I",
+   "rows": [
+    "+8 Lifesteal Chance"
+   ]
+  },
+  {
+   "tier": "Bloodletting Ritual II",
+   "rows": [
+    "+16 Lifesteal Chance"
+   ]
+  },
+  {
+   "tier": "Bloodletting Ritual III",
+   "rows": [
+    "+24 Lifesteal Chance"
+   ]
+  },
+  {
+   "tier": "Bloodletting Ritual IV",
+   "rows": [
+    "+32 Lifesteal Chance"
+   ]
+  }
+ ],
+ "Shadowstep": [
+  {
+   "tier": "Shadowstep I",
+   "rows": [
+    "+25 Dash CDR"
+   ]
+  },
+  {
+   "tier": "Shadowstep II",
+   "rows": [
+    "+50 Dash CDR"
+   ]
+  },
+  {
+   "tier": "Shadowstep III",
+   "rows": [
+    "+75 Dash CDR"
+   ]
+  },
+  {
+   "tier": "Shadowstep IV",
+   "rows": [
+    "+100 Dash CDR"
+   ]
+  }
+ ],
+ "Vitality": [
+  {
+   "tier": "Vitality",
+   "rows": []
+  }
+ ],
+ "Willpower": [
+  {
+   "tier": "Willpower",
+   "rows": []
+  }
+ ],
+ "Strength": [
+  {
+   "tier": "Strength",
+   "rows": []
+  }
+ ],
+ "Dexterity": [
+  {
+   "tier": "Dexterity",
+   "rows": []
+  }
+ ],
+ "Defense": [
+  {
+   "tier": "Defense",
+   "rows": []
+  }
+ ],
+ "Speed": [
+  {
+   "tier": "Speed",
+   "rows": []
+  }
+ ],
+ "Blessing of the Awakened": [
+  {
+   "tier": "Blessing of the Awakened",
+   "rows": [
+    "+5 Vitality",
+    "+5 Defense",
+    "+5 Speed"
+   ]
+  }
+ ]
+}

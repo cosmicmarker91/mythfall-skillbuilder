@@ -18,6 +18,8 @@ function toast(msg, action) {
 
 const tree = await loadTree();
 const data = await loadItems();
+let statInfo = {}; try { statInfo = await (await fetch("data/stats.json")).json(); } catch {}   // stat descriptions for the hover cards
+let effectInfo = {}; try { effectInfo = await (await fetch("data/effects.json")).json(); } catch {}   // status effect tiers (DPS test)
 const graph = new Graph(tree);
 setCodec(tree.nodes.map((n) => n.id));
 const sel = new Selection(new Set(tree.nodes.map((n) => n.id)));   // sel.set = the nodes you have purchased
@@ -54,7 +56,7 @@ function render() {
   const authEl = $("buildAuthor"); if (document.activeElement !== authEl) authEl.value = sel.author;
 }
 let picker;
-const character = initCharacter(sel, { $, graph, data, openPicker: (t) => picker.open(t) });
+const character = initCharacter(sel, { $, graph, data, info: statInfo, effects: effectInfo, openPicker: (t) => picker.open(t) });
 picker = initPicker({ $, data, sel, getStats: () => character.stats() });
 sel.onChange(() => { render(); character.render(); writeUrl(sel); });
 
@@ -138,10 +140,39 @@ pop.addEventListener("submit", async (e) => {
   toast(local ? "Saved locally (server not running)" : "Published to community");
 });
 
+// ---- editing one of your own published builds: the toolbar is replaced by Confirm / Cancel ----
+const applyBuild = (b) => {
+  sel.base = (b.base && b.base.length === 6 ? b.base : [0, 0, 0, 0, 0, 0]).map((x) => Math.max(0, Math.min(20, x | 0)));
+  sel.equip = {}; for (const id of b.equip || []) { const it = data.byId.get(id); if (it) sel.equip[SLOT_KEYS[it.type]] = id; }
+  sel.author = b.author || "";
+  sel.replace(b.skills, b.name);
+};
+let editing = null;   // { id, snap } while editing
+const endEdit = () => { editing = null; document.body.classList.remove("editing"); };
+const startEdit = (b) => {
+  editing = { id: b.id, snap: { skills: sel.ids(), name: sel.name, author: sel.author, base: sel.base.slice(), equip: { ...sel.equip } } };
+  document.body.classList.add("editing"); $("pubPop").hidden = true; $("editName").textContent = b.name;
+  applyBuild(b); toast("Editing your build: change it, then Confirm");
+};
+$("editCancel").onclick = () => {
+  if (!editing) return;
+  const s0 = editing.snap; endEdit();
+  sel.base = s0.base; sel.equip = s0.equip; sel.author = s0.author; sel.replace(s0.skills, s0.name);
+  toast("Edit cancelled");
+};
+$("editOk").onclick = async () => {
+  if (!editing) return;
+  if (!sel.set.size) return toast("Purchase some skills first");
+  try {
+    await community.update(editing.id, { name: sel.name, author: sel.author, skills: sel.ids(), base: sel.base, equip: Object.values(sel.equip).filter(Boolean) });
+    endEdit(); toast("Build updated");
+  } catch { toast("Update refused: you can only edit builds you published from this browser (check the Firebase rules)"); }
+};
+
 const dlg = $("community");
 const openCommunity = async () => {
   const { builds, local } = await community.list();
-  $("communityNote").textContent = local ? "Local-only list (the server API isn't reachable)." : "";
+  $("communityNote").textContent = local ? "Local-only list (the server API isn't reachable)." : "You can delete the builds you published from this browser. If you clear your browser data you lose that ability.";
   const ul = $("communityList"); ul.replaceChildren();
   if (!builds.length) { const li = document.createElement("li"); li.textContent = "No builds published yet."; ul.append(li); }
   for (const b of builds) {
@@ -151,26 +182,29 @@ const openCommunity = async () => {
     const sub = document.createElement("div"); sub.className = "sub"; sub.textContent = `${b.author ? "by " + b.author + " · " : ""}${b.skills.length} skills${b.equip && b.equip.length ? " · gear" : ""} · ${new Date(b.createdAt).toLocaleDateString()}`;
     meta.append(nm, sub);
     const load = document.createElement("button"); load.className = "mf-btn sm"; load.textContent = "Load";
-    load.onclick = () => {
-      sel.base = (b.base && b.base.length === 6 ? b.base : [0, 0, 0, 0, 0, 0]).map((x) => Math.max(0, Math.min(20, x | 0)));
-      sel.equip = {}; for (const id of b.equip || []) { const it = data.byId.get(id); if (it) sel.equip[SLOT_KEYS[it.type]] = id; }
-      sel.author = b.author || "";
-      sel.replace(b.skills, b.name); dlg.close();
-    };
+    load.onclick = () => { applyBuild(b); dlg.close(); };
     li.append(meta, load);
-    if (community.isAdmin()) {
+    if (!editing && community.canEdit(b)) {
+      const ed = document.createElement("button"); ed.className = "mf-btn sm dim"; ed.textContent = "Edit";
+      ed.onclick = () => { dlg.close(); startEdit(b); };
+      li.append(ed);
+    }
+    if (community.canDelete(b)) {
       const del = document.createElement("button"); del.className = "mf-btn sm del"; del.textContent = "Delete";
       del.onclick = async () => {
         if (!confirm(`Delete "${b.name}" from the community?`)) return;
-        try { await community.remove(b.id); toast("Deleted"); openCommunity(); } catch { toast("Delete refused: check the Firebase rules / admin user"); }
+        try { await community.remove(b.id); toast("Deleted"); openCommunity(); } catch { toast("Delete refused: you can only delete builds you published from this browser"); }
       };
-      const ren = document.createElement("button"); ren.className = "mf-btn sm dim"; ren.textContent = "Rename";
-      ren.onclick = async () => {
-        const name = prompt("Build name:", b.name); if (name === null || !name.trim()) return;
-        const author = prompt("Author (leave empty for none):", b.author || ""); if (author === null) return;
-        try { await community.rename(b.id, { name: name.trim().slice(0, 40), author: author.trim().slice(0, 30) }); toast("Renamed"); openCommunity(); } catch { toast("Rename refused: update the Firebase rules (see README)"); }
-      };
-      li.append(ren, del);
+      if (community.isAdmin()) {
+        const ren = document.createElement("button"); ren.className = "mf-btn sm dim"; ren.textContent = "Rename";
+        ren.onclick = async () => {
+          const name = prompt("Build name:", b.name); if (name === null || !name.trim()) return;
+          const author = prompt("Author (leave empty for none):", b.author || ""); if (author === null) return;
+          try { await community.rename(b.id, { name: name.trim().slice(0, 40), author: author.trim().slice(0, 30) }); toast("Renamed"); openCommunity(); } catch { toast("Rename refused: update the Firebase rules (see README)"); }
+        };
+        li.append(ren);
+      }
+      li.append(del);
     }
     ul.append(li);
   }

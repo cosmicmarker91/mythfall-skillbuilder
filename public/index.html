@@ -36,11 +36,15 @@
           <h3 class="c-h">Base Stats</h3>
           <div class="c-limit"><div id="limitFill"></div><span id="limitTxt">Stat Limit: 0/100</span></div>
           <div class="c-stats" id="stats"></div>
-          <div class="c-clearrow"><button id="resetStats" class="c-btn wide">Reset Stat Points</button></div>
+          <div class="c-clearrow"><button id="resetStats" class="c-btn wide">Reset Stat Points</button><button id="maxStats" class="c-btn wide blue">Max All</button></div>
         </div>
         <div class="c-right">
           <h3 class="c-h">Bonus Stats</h3>
           <div id="bonusList" class="c-bonuslist"></div>
+          <div class="c-dps">
+            <div class="c-dpsrow"><button id="dpsBtn" class="c-btn wide go">Test DPS</button><button id="fxBtn" class="c-btn wide fx">Effects</button></div>
+            <div id="dpsOut" class="c-dpsout"></div>
+          </div>
         </div>
       </div>
       <div id="charTip" class="c-tip" hidden></div>
@@ -58,6 +62,31 @@
     </section>
   </div>
   <div id="itemTip" class="itemtip" hidden></div>
+
+  <div id="fxOverlay" class="dv-overlay" hidden>
+    <section class="fx-panel" role="dialog" aria-modal="true" aria-label="Select effects">
+      <h2 class="c-title dv-title">Select Effects</h2>
+      <button id="fxClose" class="c-x" aria-label="Close">X</button>
+      <div class="fx-note">Buffs from the full books. They stay on for the whole test.</div>
+      <div id="fxList" class="fx-list"></div>
+      <div class="fx-foot"><button id="fxClear" class="c-btn wide">Clear</button><button id="fxDone" class="c-btn wide go2">Done</button></div>
+    </section>
+  </div>
+
+  <div id="dpsView" class="dv-overlay" hidden>
+    <section class="dv-panel" role="dialog" aria-modal="true" aria-label="DPS test">
+      <h2 class="c-title dv-title">DPS Test</h2>
+      <button id="dvClose" class="c-x" aria-label="Close">X</button>
+      <div class="dv-stage">
+        <div id="dvDps" class="dps-gold">DPS: 0.00</div>
+        <div id="dvStatus" class="dv-status"></div>
+        <canvas id="dvDummy" class="dv-dummy" width="96" height="152"></canvas>
+        <div id="dvNums" class="dv-nums"></div>
+      </div>
+      <div class="dv-bar"><i id="dvFill"></i></div>
+      <div class="dv-foot"><span id="dvTime">0.0 / 10s</span><button id="dvReplay" class="c-btn wide">Replay</button></div>
+    </section>
+  </div>
 
   <div id="buildbar">
     <div id="barBody">
@@ -77,6 +106,12 @@
     <button id="barToggle" class="bar-toggle" title="Hide / show this bar" aria-label="Hide or show the toolbar" aria-expanded="true">
       <svg viewBox="0 0 6 10" width="9" height="15" aria-hidden="true"><path d="M1 1l4 4-4 4" fill="none" stroke="#fff" stroke-width="2"/></svg>
     </button>
+  </div>
+
+  <div id="editbar">
+    <span class="en" id="editName"></span>
+    <button id="editOk" class="mf-btn sm">Confirm</button>
+    <button id="editCancel" class="mf-btn sm dim">Cancel</button>
   </div>
 
   <div id="points" title="Skillpoints spent"><img src="assets/skill-point.png" alt=""><span id="count">0</span></div>
