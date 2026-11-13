@@ -140,32 +140,33 @@ dialog::backdrop { background: rgba(0,0,0,.7); }
 .char-btn:active { transform: translateY(2px); }
 #charOverlay { position: absolute; inset: 0; z-index: 6; background: rgba(5,5,10,.72); display: grid; place-items: start center; overflow: auto; padding: 14px; }
 #charOverlay[hidden] { display: none; }
-#charPanel { position: relative; width: min(1120px, 100%); background: #a5795c; border: 3px solid #311d27; padding: 10px 22px 26px; font-weight: 900; color: #fff; }
-.c-title { margin: 0; text-align: center; font-size: clamp(38px, 4vw, 62px); font-weight: 900; letter-spacing: .03em; color: #d2b698; -webkit-text-stroke: 8px #1a1214; paint-order: stroke fill; line-height: 1.1; }
-.c-x { position: absolute; right: -3px; top: -3px; width: 56px; height: 56px; background: #983935; color: #fff; border: 4px solid #311d27; font-weight: 900; font-size: 36px; -webkit-text-stroke: 5px #000; paint-order: stroke fill; line-height: 1; }
+#charPanel { position: relative; margin: auto; width: min(920px, 100%); background: #a5795c; border: 3px solid #311d27; padding: 8px 18px 18px; font-weight: 900; color: #fff; }
+.c-title { margin: 0; text-align: center; font-size: clamp(30px, 3vw, 46px); font-weight: 900; letter-spacing: .03em; color: #d2b698; -webkit-text-stroke: 7px #1a1214; paint-order: stroke fill; line-height: 1.1; }
+.c-x { position: absolute; right: -3px; top: -3px; width: 44px; height: 44px; background: #983935; color: #fff; border: 4px solid #311d27; font-weight: 900; font-size: 28px; -webkit-text-stroke: 4px #000; paint-order: stroke fill; line-height: 1; }
 .c-x:hover { filter: brightness(1.12); }
-.c-cols { display: grid; grid-template-columns: 1.25fr 1fr; gap: 26px; margin-top: 4px; }
-.c-h { margin: 12px 0 10px; text-align: center; font-size: clamp(24px, 2.2vw, 34px); font-weight: 900; letter-spacing: .04em; -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
-.c-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: min(100%, 360px); margin: 0 auto; }
-.c-slot { aspect-ratio: 1; padding: 0; background: #734a43; border: 5px solid #311d27; display: grid; place-items: center; }
+.c-cols { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; margin-top: 2px; }
+.c-h { margin: 8px 0 8px; text-align: center; font-size: clamp(20px, 1.8vw, 27px); font-weight: 900; letter-spacing: .04em; -webkit-text-stroke: 5px #000; paint-order: stroke fill; }
+.c-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: min(100%, 280px); margin: 0 auto; }
+.c-slot { aspect-ratio: 1; padding: 0; background: #734a43; border: 4px solid #311d27; display: grid; place-items: center; }
 .c-slot.empty { background: none; border: 0; }
 .c-slot img { width: 66%; image-rendering: pixelated; pointer-events: none; }
 .c-slot:not(.empty):hover { filter: brightness(1.15); }
-.c-pills { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 14px; }
-.c-pill { background: #b99678; height: 36px; display: grid; place-items: center; font-size: 18px; letter-spacing: .02em; color: #f4ead9; -webkit-text-stroke: 4px #311d27; paint-order: stroke fill; white-space: nowrap; }
+.c-pills { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; margin-top: 10px; }
+.c-pill { background: #b99678; height: 30px; display: grid; place-items: center; font-size: 15px; letter-spacing: .02em; color: #f4ead9; -webkit-text-stroke: 3.5px #311d27; paint-order: stroke fill; white-space: nowrap; }
 .c-tip { position: absolute; z-index: 9; background: rgba(74,50,45,.94); border: 2px solid #311d27; padding: 6px 12px; font-size: 17px; letter-spacing: .02em; -webkit-text-stroke: 4px #000; paint-order: stroke fill; pointer-events: none; white-space: nowrap; }
 .c-tip[hidden] { display: none; }
-.c-limit { position: relative; height: 40px; background: #090a13; border: 3px solid #090a13; margin-bottom: 8px; }
+.c-limit { position: relative; height: 34px; background: #090a13; border: 3px solid #090a13; margin-bottom: 8px; }
 #limitFill { position: absolute; left: 0; top: 0; bottom: 0; background: #b0dbda; width: 0; transition: width .15s; }
-#limitTxt { position: absolute; inset: 0; display: grid; place-items: center; font-size: 25px; letter-spacing: .04em; -webkit-text-stroke: 5px #000; paint-order: stroke fill; }
-.c-stats, .c-bonuslist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; }
-.c-row { display: grid; grid-template-columns: 1fr auto auto auto auto; align-items: center; gap: 4px; background: #b99678; height: 46px; padding: 0 8px 0 10px; font-size: 17px; letter-spacing: .03em; -webkit-text-stroke: 4px #311d27; paint-order: stroke fill; }
-.c-row.bonus { grid-template-columns: 1fr auto; }
+#limitTxt { position: absolute; inset: 0; display: grid; place-items: center; font-size: 20px; letter-spacing: .04em; -webkit-text-stroke: 4px #000; paint-order: stroke fill; }
+.c-stats, .c-bonuslist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 8px; }
+.c-row { display: grid; grid-template-columns: 1fr auto auto auto auto; align-items: center; gap: 3px; background: #b99678; height: 38px; padding: 0 6px 0 8px; font-size: 14px; letter-spacing: .02em; -webkit-text-stroke: 3.5px #311d27; paint-order: stroke fill; }
+.c-row.bonus { grid-template-columns: minmax(0, 1fr) auto; }
 .c-name { white-space: nowrap; }
-.c-val { min-width: 50px; text-align: center; }
-.c-bonus { min-width: 34px; text-align: right; color: #a6d85a; }
+.c-row.bonus .c-name { white-space: normal; line-height: 1.05; overflow-wrap: anywhere; }
+.c-val { min-width: 42px; text-align: center; }
+.c-bonus { min-width: 30px; text-align: right; color: #a6d85a; }
 .c-bonus.neg { color: #e0605a; }
-.c-btn { width: 26px; height: 26px; padding: 0; background: #5fa13c; color: #fff; border: 2px solid #000; border-bottom: 5px solid #3a6a24; font-weight: 900; font-size: 21px; line-height: 1; -webkit-text-stroke: 3px #000; paint-order: stroke fill; display: grid; place-items: center; }
+.c-btn { width: 22px; height: 22px; padding: 0; background: #5fa13c; color: #fff; border: 2px solid #000; border-bottom: 5px solid #3a6a24; font-weight: 900; font-size: 18px; line-height: 1; -webkit-text-stroke: 2.5px #000; paint-order: stroke fill; display: grid; place-items: center; }
 .c-btn:hover:not(:disabled) { filter: brightness(1.15); }
 .c-btn:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 3px; }
 .c-btn:disabled { background: #7d8a73; border-bottom-color: #55604d; color: #c7ccc2; }
